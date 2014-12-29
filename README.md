@@ -5,17 +5,17 @@ DataPickerView
 
 思路
 ---
-封装变化，每组变量是 :
-此组所对应的实体 entity；
-此组显示所对应的实体属性showProperty；
-下一组需要传递的实体属性passProperty；
-选中项所对应的索引 row ；
-此组所对应的数据的集合（动态,受上一组变化而变化）array。
+封装变化，每组变量是 :\<br>
+此组所对应的实体 entity；\<br>
+此组显示所对应的实体属性showProperty；\<br>
+下一组需要传递的实体属性passProperty；\<br>
+选中项所对应的索引 row ；\<br>
+此组所对应的数据的集合（动态,受上一组变化而变化）array。\<br>\<br>
 
 按照MVC框架原理，这个自定义类UIView（V）只展现界面，业务逻辑、数据都放在调用页面中（Controller）。
-用3个委托方法来实现,大体可以这样理解:
-entity、showProperty --> textOfRow:inComponent:rowArray: 需要显示此组内容时通过delegate将数据在页面传过来
-passProperty、array --> arrayOfRowArray:inComponent: 索引发生变化时通过delegate将数据在页面传过来
+用3个委托方法来实现,大体可以这样理解:\<br>
+entity、showProperty --> textOfRow:inComponent:rowArray: 需要显示此组内容时通过delegate将数据在页面传过来\<br>
+passProperty、array --> arrayOfRowArray:inComponent: 索引发生变化时通过delegate将数据在页面传过来\<br>
 row -- > selectDataOfRowArray: 选择完成时将索引集合传到页面中
 
 缺点
@@ -65,7 +65,7 @@ DataPickerViewDelegate
 
 How to use
 ---  
-详细请见[ViewController.h]（https://github.com/Ericfengshi/FSDataPickerView/ViewController.h）
+详细请见[ViewController.h](https://github.com/Ericfengshi/FSDataPickerView/ViewController.h)
 
 Image
 ---  
