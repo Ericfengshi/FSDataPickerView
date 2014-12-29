@@ -65,7 +65,7 @@ DataPickerViewDelegate
 
 How to use
 ---  
-详细请见[ViewController.h](https://github.com/Ericfengshi/FSDataPickerView/ViewController.h)
+详细请见[ViewController.h](https://github.com/Ericfengshi/FSDataPickerView/blob/master/FSDataPickerView/ViewController.m)
 
 Image
 ---  
