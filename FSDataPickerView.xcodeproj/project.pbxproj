@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9FA85C9F1A5509F800DB115F /* DataPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA85C9E1A5509F800DB115F /* DataPickerView.m */; };
 		9FFE54861A4FE87100BA07D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFE54851A4FE87100BA07D9 /* UIKit.framework */; };
 		9FFE54881A4FE87100BA07D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFE54871A4FE87100BA07D9 /* Foundation.framework */; };
 		9FFE548A1A4FE87100BA07D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFE54891A4FE87100BA07D9 /* CoreGraphics.framework */; };
@@ -15,7 +16,6 @@
 		9FFE54961A4FE87100BA07D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE54951A4FE87100BA07D9 /* AppDelegate.m */; };
 		9FFE54991A4FE87100BA07D9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE54981A4FE87100BA07D9 /* ViewController.m */; };
 		9FFE549C1A4FE87100BA07D9 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFE549A1A4FE87100BA07D9 /* ViewController.xib */; };
-		9FFE54A51A4FE8C400BA07D9 /* DataPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE54A41A4FE8C400BA07D9 /* DataPickerView.m */; };
 		9FFE54CE1A504CDE00BA07D9 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE54C41A504CDE00BA07D9 /* FMDatabase.m */; };
 		9FFE54CF1A504CDE00BA07D9 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE54C61A504CDE00BA07D9 /* FMDatabaseAdditions.m */; };
 		9FFE54D01A504CDE00BA07D9 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE54C81A504CDE00BA07D9 /* FMDatabasePool.m */; };
@@ -27,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9FA85C9D1A5509F800DB115F /* DataPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataPickerView.h; sourceTree = "<group>"; };
+		9FA85C9E1A5509F800DB115F /* DataPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataPickerView.m; sourceTree = "<group>"; };
 		9FFE54811A4FE87100BA07D9 /* FSDataPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FSDataPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FFE54851A4FE87100BA07D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9FFE54871A4FE87100BA07D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,8 +42,6 @@
 		9FFE54971A4FE87100BA07D9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9FFE54981A4FE87100BA07D9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9FFE549B1A4FE87100BA07D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		9FFE54A31A4FE8C400BA07D9 /* DataPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataPickerView.h; path = FSDataPickerView/Common/DataPickerView.h; sourceTree = "<group>"; };
-		9FFE54A41A4FE8C400BA07D9 /* DataPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataPickerView.m; path = FSDataPickerView/Common/DataPickerView.m; sourceTree = "<group>"; };
 		9FFE54C31A504CDE00BA07D9 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		9FFE54C41A504CDE00BA07D9 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		9FFE54C51A504CDE00BA07D9 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -77,8 +77,8 @@
 		9FFE54761A4FE87100BA07D9 = {
 			isa = PBXGroup;
 			children = (
-				9FFE54A31A4FE8C400BA07D9 /* DataPickerView.h */,
-				9FFE54A41A4FE8C400BA07D9 /* DataPickerView.m */,
+				9FA85C9D1A5509F800DB115F /* DataPickerView.h */,
+				9FA85C9E1A5509F800DB115F /* DataPickerView.m */,
 				9FFE548B1A4FE87100BA07D9 /* FSDataPickerView */,
 				9FFE54841A4FE87100BA07D9 /* Frameworks */,
 				9FFE54821A4FE87100BA07D9 /* Products */,
@@ -249,13 +249,13 @@
 				9FFE54921A4FE87100BA07D9 /* main.m in Sources */,
 				9FFE54961A4FE87100BA07D9 /* AppDelegate.m in Sources */,
 				9FFE54991A4FE87100BA07D9 /* ViewController.m in Sources */,
-				9FFE54A51A4FE8C400BA07D9 /* DataPickerView.m in Sources */,
 				9FFE54CE1A504CDE00BA07D9 /* FMDatabase.m in Sources */,
 				9FFE54CF1A504CDE00BA07D9 /* FMDatabaseAdditions.m in Sources */,
 				9FFE54D01A504CDE00BA07D9 /* FMDatabasePool.m in Sources */,
 				9FFE54D11A504CDE00BA07D9 /* FMDatabaseQueue.m in Sources */,
 				9FFE54D21A504CDE00BA07D9 /* FMResultSet.m in Sources */,
 				9FFE54DC1A504DC900BA07D9 /* Logic.m in Sources */,
+				9FA85C9F1A5509F800DB115F /* DataPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

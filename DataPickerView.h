@@ -14,9 +14,11 @@
  * 选择器选择完成
  * @param rowArray :
     选择器视图 每组选中的索引集合
+ * @param actionDone :
+    是否保存
  * @return
  */
--(void)selectDataOfRowArray:(NSMutableArray *)rowArray;
+-(void)selectDataOfRowArray:(NSMutableArray *)rowArray actionDone:(BOOL)actionDone;
 /**
  * 本组此索引对应的内容
  * @param row :
@@ -40,12 +42,16 @@
 @end
 
 @interface DataPickerView : UIView<UIPickerViewDelegate,UIPickerViewDataSource>
+@property (nonatomic,retain) UIWindow *window;
+@property (nonatomic,retain) UIView *shadowView;
 @property (nonatomic,retain) UIToolbar *toolBar;
 @property (nonatomic,retain) UIView *pickView;
 @property (nonatomic,retain) UIPickerView *pickViewList;
 @property (nonatomic,assign) id delegate;
 @property (nonatomic,retain) NSMutableArray *rowArray;
+@property (nonatomic,retain) NSMutableArray *defaultRowArray;
 @property (nonatomic,assign) int numberOfComponents;
+@property (nonatomic,assign) int selectComponent;
 /**
  * 初始化
  * @param size :
@@ -58,7 +64,7 @@
     组件个数
  * @return id(UIView)
  */
--(id)initWithSize:(CGSize)size title:(NSString*)title delegate:(id<DataPickerViewDelegate>)delegate numberOfComponents:(NSInteger)numberOfComponents;
+-(id)initWithTitle:(NSString*)title delegate:(id<DataPickerViewDelegate>)delegate numberOfComponents:(NSInteger)numberOfComponents;
 /**
  * 数据加载
  * @param rowArray :
@@ -68,9 +74,7 @@
 -(void)viewLoad:(NSMutableArray*)rowArray;
 /**
  * DataPickerView展现
- * @param view :
-    调用页面的self.view
  * @return
  */
--(void)showInView:(UIView *)view;
+-(void)showInView;
 @end

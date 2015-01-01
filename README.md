@@ -16,7 +16,7 @@ DataPickerView
 用3个委托方法来实现,大体可以这样理解:  
 entity、showProperty --> textOfRow:inComponent:rowArray: 需要显示此组内容时通过delegate将数据在页面传过来  
 passProperty、array --> arrayOfRowArray:inComponent: 索引发生变化时通过delegate将数据在页面传过来  
-row -- > selectDataOfRowArray: 选择完成时将索引集合传到页面中
+row -- > selectDataOfRowArray:actionDone: 选择完成时将索引集合传到页面中
 
 缺点
 ---
@@ -24,8 +24,8 @@ row -- > selectDataOfRowArray: 选择完成时将索引集合传到页面中
 
 What you need
 ---
-* DataPickerView.h
-* DataPickerView.m
+* [DataPickerView.h](https://github.com/Ericfengshi/FSDataPickerView/blob/master/DataPickerView.h)
+* [DataPickerView.m](https://github.com/Ericfengshi/FSDataPickerView/blob/master/DataPickerView.m)
 
 DataPickerViewDelegate
 ---  
@@ -35,9 +35,11 @@ DataPickerViewDelegate
  * 选择器选择完成
  * @param rowArray :
     选择器视图 每组选中的索引集合
+ * @param actionDone :
+    是否保存
  * @return
  */
--(void)selectDataOfRowArray:(NSMutableArray *)rowArray;
+-(void)selectDataOfRowArray:(NSMutableArray *)rowArray actionDone:(BOOL)actionDone;
 
 /**
  * 本组此索引对应的内容

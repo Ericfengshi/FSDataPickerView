@@ -3,7 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[DataPickerView numberOfComponentsInPickerView:]:DataPickerView.m">
+      </ContextState>
+      <ContextState
          contextName = "-[DataPickerView viewLoad:]:DataPickerView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "rowArray.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DataPickerView pickerView:viewForRow:forComponent:reusingView:]:DataPickerView.m">
       </ContextState>
       <ContextState
          contextName = "__block_global_0:DataPickerView.m">
@@ -17,18 +28,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ViewController textFieldShouldBeginEditing:]:ViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[DataPickerView numberOfComponentsInPickerView:]:DataPickerView.m">
-      </ContextState>
-      <ContextState
          contextName = "-[ViewController textOfRow:inComponent:rowArray:]:ViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "row">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DataPickerView actionCancel]:DataPickerView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController textFieldShouldBeginEditing:]:ViewController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

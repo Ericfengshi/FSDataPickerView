@@ -20,7 +20,7 @@
 @property (nonatomic,retain) UITextField *threeComponentTextField;
 @property (nonatomic,retain) DataPickerView *threeComponentDataPicker;
 
--(void)selectDataOfRowArray:(NSMutableArray *)rowArray;
+-(void)selectDataOfRowArray:(NSMutableArray *)rowArray actionDone:(BOOL)actionDone;
 -(NSString *)textOfRow:(NSInteger)row inComponent:(NSInteger)component rowArray:(NSMutableArray *)rowArray;
 -(NSMutableArray*)arrayOfRowArray:(NSMutableArray *)rowArray inComponent:(NSInteger)component;
 @end

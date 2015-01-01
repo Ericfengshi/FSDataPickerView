@@ -73,9 +73,8 @@
     self.oneComponentTextField.tag = 1;
     [self.view addSubview:self.oneComponentTextField];
     
-    DataPickerView *oneComponentDataPicker = [[[DataPickerView alloc] initWithSize:CGSizeMake(320,280) title:@"省份" delegate:self numberOfComponents:1] autorelease];
+    DataPickerView *oneComponentDataPicker = [[[DataPickerView alloc] initWithTitle:@"省份" delegate:self numberOfComponents:1] autorelease];
     self.oneComponentDataPicker = oneComponentDataPicker;
-    self.oneComponentRowArray = self.oneComponentDataPicker.rowArray;
     
     self.twoComponentTextField = [[[UITextField alloc] initWithFrame:CGRectMake(30, 50, [UIScreen mainScreen].bounds.size.width-60, 30)] autorelease];
     self.twoComponentTextField.borderStyle = UITextBorderStyleRoundedRect;
@@ -84,9 +83,8 @@
     self.twoComponentTextField.tag = 2;
     [self.view addSubview:self.twoComponentTextField];
     
-    DataPickerView *twoComponentDataPicker = [[[DataPickerView alloc] initWithSize:CGSizeMake(320,280) title:@"省份-城市" delegate:self numberOfComponents:2] autorelease];
+    DataPickerView *twoComponentDataPicker = [[[DataPickerView alloc] initWithTitle:@"省份-城市" delegate:self numberOfComponents:2] autorelease];
     self.twoComponentDataPicker = twoComponentDataPicker;
-    self.twoComponentRowArray = self.twoComponentDataPicker.rowArray;
     
     self.threeComponentTextField = [[[UITextField alloc] initWithFrame:CGRectMake( 30, 90, [UIScreen mainScreen].bounds.size.width-60, 30)] autorelease];
     self.threeComponentTextField.borderStyle = UITextBorderStyleRoundedRect;
@@ -95,9 +93,8 @@
     self.threeComponentTextField.tag = 3;
     [self.view addSubview:self.threeComponentTextField];
     
-    DataPickerView *threeComponentDataPicker = [[[DataPickerView alloc] initWithSize:CGSizeMake(320,280) title:@"省份-城市-区县" delegate:self numberOfComponents:3] autorelease];
+    DataPickerView *threeComponentDataPicker = [[[DataPickerView alloc] initWithTitle:@"省份-城市-区县" delegate:self numberOfComponents:3] autorelease];
     self.threeComponentDataPicker = threeComponentDataPicker;
-    self.threeComponentRowArray = self.threeComponentDataPicker.rowArray;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -111,37 +108,67 @@
  * 选择器选择完成
  * @param rowArray :
     选择器视图 每组选中的索引集合
+ * @param actionDone :
+    是否保存
  * @return
  */
--(void)selectDataOfRowArray:(NSMutableArray *)rowArray{
+-(void)selectDataOfRowArray:(NSMutableArray *)rowArray actionDone:(BOOL)actionDone{
+    NSLog(@"selectDataOfRowArray rowArray:%@",rowArray);
     NSMutableArray *provinceArray = [[Logic sharedInstance] getProvinceList];
     if (self.textFieldTag == 1) {
-        int provinceRow = [[rowArray objectAtIndex:0] integerValue];
-        NSString *province = [provinceArray objectAtIndex:provinceRow];
-        
-        self.oneComponentTextField.text = province;
+        if (actionDone) {
+            int provinceRow = [[rowArray objectAtIndex:0] integerValue];
+            NSString *province = [provinceArray objectAtIndex:provinceRow];
+            
+            self.oneComponentTextField.text = province;
+        }
+
         self.oneComponentRowArray = rowArray;
     }else if(self.textFieldTag == 2){
-        
-        int provinceRow = [[rowArray objectAtIndex:0] integerValue];
-        NSString *province = [provinceArray objectAtIndex:provinceRow];
-        NSMutableArray *cityArray = [[Logic sharedInstance] getCityListByProvince:province];
-        int cityRow = [[rowArray objectAtIndex:1] integerValue];
-        NSString *city = [cityArray objectAtIndex:cityRow];
-        
-        self.twoComponentTextField.text = [NSString stringWithFormat:@"%@-%@",province,city];
+        if (actionDone) {
+            int provinceRow = [[rowArray objectAtIndex:0] integerValue];
+            NSString *province = [provinceArray objectAtIndex:provinceRow];
+            NSMutableArray *cityArray = [[Logic sharedInstance] getCityListByProvince:province];
+            int cityRow = [[rowArray objectAtIndex:1] integerValue];
+            NSString *city = @"";
+            if (provinceArray.count > cityRow) {
+                city = [cityArray objectAtIndex:cityRow];
+            }else{
+                city = [cityArray objectAtIndex:0];
+                [rowArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:0]];
+            }
+            
+            self.twoComponentTextField.text = [NSString stringWithFormat:@"%@-%@",province,city];
+        }
+
         self.twoComponentRowArray = rowArray;
     }else if(self.textFieldTag == 3){
-        int provinceRow = [[rowArray objectAtIndex:0] integerValue];
-        NSString *province = [provinceArray objectAtIndex:provinceRow];
-        NSMutableArray *cityArray = [[Logic sharedInstance] getCityListByProvince:province];
-        int cityRow = [[rowArray objectAtIndex:1] integerValue];
-        NSString *city = [cityArray objectAtIndex:cityRow];
-        NSMutableArray *townArray = [[Logic sharedInstance] getTownListByCity:city];
-        int townRow = [[rowArray objectAtIndex:2] integerValue];
-        NSString *town = [townArray objectAtIndex:townRow];
         
-        self.threeComponentTextField.text = [NSString stringWithFormat:@"%@-%@-%@",province,city,town];
+        if (actionDone) {
+            int provinceRow = [[rowArray objectAtIndex:0] integerValue];
+            NSString *province = [provinceArray objectAtIndex:provinceRow];
+            NSMutableArray *cityArray = [[Logic sharedInstance] getCityListByProvince:province];
+            int cityRow = [[rowArray objectAtIndex:1] integerValue];
+            NSString *city = @"";
+            if (provinceArray.count > cityRow) {
+                city = [cityArray objectAtIndex:cityRow];
+            }else{
+                city = [cityArray objectAtIndex:0];
+                [rowArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:0]];
+            }
+            NSMutableArray *townArray = [[Logic sharedInstance] getTownListByCity:city];
+            int townRow = [[rowArray objectAtIndex:2] integerValue];
+            NSString *town = @"";
+            if (cityArray.count > townRow) {
+                town = [townArray objectAtIndex:townRow];
+            }else{
+                town = [townArray objectAtIndex:0];
+                [rowArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithInt:0]];
+            }
+            
+            self.threeComponentTextField.text = [NSString stringWithFormat:@"%@-%@-%@",province,city,town];
+        }
+
         self.threeComponentRowArray = rowArray;
     }
 }
@@ -157,6 +184,7 @@
  * @return NSString
  */
 -(NSString *)textOfRow:(NSInteger)row inComponent:(NSInteger)component rowArray:(NSMutableArray *)rowArray{
+    NSLog(@"textOfRow rowArray:%@",rowArray);
     NSMutableArray *provinceArray = [[Logic sharedInstance] getProvinceList];
     if (self.textFieldTag == 1) {
         return [provinceArray objectAtIndex:row];
@@ -167,7 +195,13 @@
             int provinceRow = [[rowArray objectAtIndex:0] integerValue];
             NSString *province = [provinceArray objectAtIndex:provinceRow];
             NSMutableArray *cityArray = [[Logic sharedInstance] getCityListByProvince:province];
-            NSString *city = [cityArray objectAtIndex:row];
+            NSString *city = @"";
+            if (cityArray.count > row) {
+                city = [cityArray objectAtIndex:row];
+            }else{
+                city = [cityArray objectAtIndex:0];
+            }
+
             return city;
         }
     }else{// if(self.textFieldTag == 3){
@@ -177,16 +211,31 @@
             int provinceRow = [[rowArray objectAtIndex:0] integerValue];
             NSString *province = [provinceArray objectAtIndex:provinceRow];
             NSMutableArray *cityArray = [[Logic sharedInstance] getCityListByProvince:province];
-            NSString *city = [cityArray objectAtIndex:row];
+            NSString *city = @"";
+            if (cityArray.count > row) {
+                city = [cityArray objectAtIndex:row];
+            }else{
+                city = [cityArray objectAtIndex:0];
+            }
             return city;
         }else{
             int provinceRow = [[rowArray objectAtIndex:0] integerValue];
             NSString *province = [provinceArray objectAtIndex:provinceRow];
             NSMutableArray *cityArray = [[Logic sharedInstance] getCityListByProvince:province];
             int cityRow = [[rowArray objectAtIndex:1] integerValue];
-            NSString *city = [cityArray objectAtIndex:cityRow];
+            NSString *city = @"";
+            if (cityArray.count > cityRow) {
+                city = [cityArray objectAtIndex:cityRow];
+            }else{
+                city = [cityArray objectAtIndex:0];
+            }
             NSMutableArray *townArray = [[Logic sharedInstance] getTownListByCity:city];
-            NSString *town = [townArray objectAtIndex:row];
+            NSString *town = @"";
+            if (townArray.count > row) {
+                town = [townArray objectAtIndex:row];
+            }else{
+                town = [townArray objectAtIndex:0];
+            }
             return town;
         }
 
@@ -202,6 +251,7 @@
  * @return NSMutableArray
  */
 -(NSMutableArray*)arrayOfRowArray:(NSMutableArray *)rowArray inComponent:(NSInteger)component {
+    NSLog(@"arrayOfRowArray rowArray:%@",rowArray);
     NSMutableArray *provinceArray = [[Logic sharedInstance] getProvinceList];
     if (self.textFieldTag == 1) {
         return provinceArray;
@@ -210,7 +260,12 @@
             return provinceArray;
         }else{//component == 0
             int provinceRow = [[rowArray objectAtIndex:component] integerValue];
-            NSString *province = [provinceArray objectAtIndex:provinceRow];
+            NSString *province = @"";
+            if (provinceArray.count>provinceRow) {
+                province = [provinceArray objectAtIndex:provinceRow];
+            }else{
+                province = [provinceArray objectAtIndex:0];
+            }
             NSMutableArray *cityArray = [[Logic sharedInstance] getCityListByProvince:province];
             return cityArray;
         }
@@ -220,15 +275,30 @@
             return provinceArray;
         }else if(component == 0){
             int provinceRow = [[rowArray objectAtIndex:component] integerValue];
-            NSString *province = [provinceArray objectAtIndex:provinceRow];
+            NSString *province = @"";
+            if (provinceArray.count>provinceRow) {
+                province = [provinceArray objectAtIndex:provinceRow];
+            }else{
+                province = [provinceArray objectAtIndex:0];
+            }
             NSMutableArray *cityArray = [[Logic sharedInstance] getCityListByProvince:province];
             return cityArray;
         }else{//component == 1
             int provinceRow = [[rowArray objectAtIndex:0] integerValue];
-            NSString *province = [provinceArray objectAtIndex:provinceRow];
+            NSString *province = @"";
+            if (provinceArray.count>provinceRow) {
+                province = [provinceArray objectAtIndex:provinceRow];
+            }else{
+                province = [provinceArray objectAtIndex:0];
+            }
             NSMutableArray *cityArray = [[Logic sharedInstance] getCityListByProvince:province];
             int cityRow = [[rowArray objectAtIndex:1] integerValue];
-            NSString *city = [cityArray objectAtIndex:cityRow];
+            NSString *city = @"";
+            if (cityArray.count>cityRow) {
+                city = [cityArray objectAtIndex:cityRow];
+            }else{
+                city = [cityArray objectAtIndex:0];
+            }
             NSMutableArray *townArray = [[Logic sharedInstance] getTownListByCity:city];
             return townArray;
         }
@@ -239,21 +309,22 @@
 #pragma mark -textFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
+    NSLog(@"self.threeComponentRowArray:%@",self.threeComponentRowArray);
+
     self.textFieldTag = textField.tag;
     if (textField.tag == 1) {
 
         [self.oneComponentDataPicker viewLoad:self.oneComponentRowArray];
-        [self.oneComponentDataPicker showInView:self.view];
+        [self.oneComponentDataPicker showInView];
 
     }else if(textField.tag == 2){
         
         [self.twoComponentDataPicker viewLoad:self.twoComponentRowArray];
-        [self.twoComponentDataPicker showInView:self.view];
+        [self.twoComponentDataPicker showInView];
     }else if(textField.tag == 3){
         
         [self.threeComponentDataPicker viewLoad:self.threeComponentRowArray];
-        [self.threeComponentDataPicker showInView:self.view];
+        [self.threeComponentDataPicker showInView];
     }
     return NO;
 }
