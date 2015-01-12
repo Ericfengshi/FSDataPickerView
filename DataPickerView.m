@@ -35,7 +35,7 @@
 -(id)initWithTitle:(NSString*)title delegate:(id<DataPickerViewDelegate>)delegate numberOfComponents:(NSInteger)numberOfComponents{
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor redColor];
+        self.backgroundColor = [UIColor grayColor];
         self.numberOfComponents = numberOfComponents;
         self.rowArray = [[[NSMutableArray alloc] init] autorelease];
         for (int i=0; i<self.numberOfComponents; i++) {
