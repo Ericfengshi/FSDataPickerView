@@ -22,7 +22,6 @@
 
 -(void)dealloc
 {
-    [window release];
     self.shadowView = nil;
     self.pickView = nil;
     self.toolBar = nil;
